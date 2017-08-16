@@ -1,0 +1,22 @@
+<h2>My Heroes</h2>
+<div *ngIf="selectedHero">
+  <h2>{{selectedHero.name | uppercase}}</h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes"
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
+
+<j-loader [isRunning]="isRequesting" >
+</j-loader>
+<ul>
+  <li *ngFor="let job of jobs | paginate: {itemsPerPage: 10, currentPage: p}">
+    <h4>{{job.title}}</h4> 
+    <p>{{job.description}}</p>
+  </li>
+</ul>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
